@@ -3,44 +3,127 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kunsthalle AR Show!</title>
+    <title>Kunsthalle AR</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-     <style>
-        model-viewer {
-            width: 100%; /* 100% of the parent's width */
-            height: 80vh; /* 80% of the viewport height */
-            display: block;
-            margin: auto;
-        }
+    <style>
+      body {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        background-color: #ffcc00;
+        color: #000080;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        color: #ff0000;
+        background-color: #00ffff;
+        border: 3px solid #000080;
+        display: inline-block;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 5px;
+      }
+      h2 {
+        color: #ff0000;
+        background-color: #00ffff;
+        border: 3px solid #000080;
+        display: inline-block;
+        padding: 10px;
+        margin: 20px 0;
+      }
+      .content {
+        border: 3px solid #000080;
+        padding: 20px;
+        margin-left: 100px;
+        margin-right: 100px;
+        background-color: #ffffff;
+      }
+      model-viewer {
+        width: 100%;
+        height: 80vh;
+        display: block;
+        margin: auto;
+        border: 3px solid #000080;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 0.8em;
+        color: #000080;
+      }
+      .flower {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+      }
     </style>
   </head>
   <body>
-<H2>Wie, nur das?</H2>
-  <model-viewer 
-                id="model-viewer"
-                src="Fynn.glb"
-                ios-src="Fynn.usdz"
-                alt="Kunsthalle AR Show"
-                ar
-                ar-modes="webxr scene-viewer quick-look" 
-                environment-image="neutral" 
-                auto-rotate
-                camera-controls
-                animation-name="CubeAction" 
-                animation-loop>  
-  </model-viewer>
- <script>
-        async function checkARCoreCompatibility() {
-            const modelViewer = document.getElementById('model-viewer');
-            const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-            if (!isARCoreSupported) {
-                modelViewer.removeAttribute('ar');
-                modelViewer.removeAttribute('ar-modes');
-                alert('Your device is not compatible with AR features. You can still view the 3D model.');
-            }
-        }
+    <div class="container">
+      <h1>THIS IS AR</h1><br>
+      <h2>You 90s kids will someday understand</h2>
+      <div class="content">
+        <model-viewer 
+          id="model-viewer"
+          src="Fynn.glb"
+          ios-src="Fynn.usdz"
+          alt="Kunsthalle AR Show"
+          ar
+          ar-modes="webxr scene-viewer quick-look" 
+          environment-image="neutral" 
+          auto-rotate
+          camera-controls
+          animation-name="CubeAction" 
+          animation-loop>
+        </model-viewer>
+      </div>
+      <div class="footer">
+        <p>hello ^^</p>
+      </div>
+    </div>
+    <script>
+      const flowerImages = ['flower1.png', 'flower2.png', 'flower3.png'];
+      const body = document.body;
 
-        document.addEventListener('DOMContentLoaded', checkARCoreCompatibility);
+      function getRandomPosition() {
+        const x = Math.floor(Math.random() * window.innerWidth);
+        const y = Math.floor(Math.random() * window.innerHeight);
+        return { x, y };
+      }
+
+      function addFlower() {
+        const img = document.createElement('img');
+        img.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+        img.className = 'flower';
+        const position = getRandomPosition();
+        img.style.left = `${position.x}px`;
+        img.style.top = `${position.y}px`;
+        body.appendChild(img);
+      }
+
+      function addMultipleFlowers(count) {
+        for (let i = 0; i < count; i++) {
+          addFlower();
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        addMultipleFlowers(10); // Change the number to add more or fewer flowers
+        checkARCoreCompatibility();
+      });
+
+      async function checkARCoreCompatibility() {
+        const modelViewer = document.getElementById('model-viewer');
+        const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
+        if (!isARCoreSupported) {
+          modelViewer.removeAttribute('ar');
+          modelViewer.removeAttribute('ar-modes');
+          alert('Your device is not compatible with AR features. You can still view the 3D model.');
+        }
+      }
     </script>
-   </body>
+  </body>
 </html>
