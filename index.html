@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR - VOI</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: black;
@@ -16,22 +18,39 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            font-family: 'Roboto', sans-serif; /* Apply the font to the entire body */
+            font-family: 'Roboto', sans-serif; /* Apply the 'Roboto' font to the entire body */
         }
         h2 {
             margin-top: 100px; /* Adjust this value to move the headline lower */
             text-align: center;
+            font-size: 3em; /* Increase the font size of the headline */
         }
         model-viewer {
-            border: 2px solid white; /* Adds a white border around the 3D viewer */
+            border: 2px solid rgba(255, 255, 255, 0.432); /* Adds a white border around the 3D viewer */
             margin-top: 20px; /* Optional: Adds some spacing between the headline and the 3D viewer */
             width: 80vw; /* Set the width of the model viewer */
             height: 60vh; /* Set the height of the model viewer */
         }
+        .jacquard-12-regular {
+            font-family: "Jacquard 12", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .custom-text {
+          font-family: "Jacquard 12", system-ui;
+    font-size: 1em; /* Change the font size */
+    font-weight: bold; /* Make the font bold */
+    color: #ffffff; /* Change the text color */
+    position: relative; /* Use relative positioning */
+    top: 10px; /* Move the text down 50px */
+    left: 0px; /* Move the text right 20px */
+}
+
     </style>
 </head>
 <body>
-    <h2>sheep</h2>
+    <h2 class="jacquard-12-regular">sheep</h2>
     <model-viewer src="sheep.glb"
                   ios-src="sheep.usdz"
                   alt="Sheep"
@@ -41,5 +60,8 @@
                   ar-modes="webxr scene-viewer quick-look" 
                   environment-image="neutral">   
     </model-viewer>
+
+    <p class="custom-text">Voi</p>
+
 </body>
 </html>
