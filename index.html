@@ -48,6 +48,7 @@
             font-size: 2em;
             padding: 0.5em;
             cursor: pointer;
+            z-index: 1; /* Ensure buttons are above the model viewer */
         }
         .arrow-button.left {
             left: -40px;
@@ -68,6 +69,21 @@
             position: relative;
             top: 10px;
             left: 0px;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2em;
+                margin-top: 60px;
+            }
+            .model-viewer-container {
+                width: 90vw;
+                height: 50vh;
+            }
+            .arrow-button {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
