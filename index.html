@@ -92,8 +92,8 @@
     <div class="model-viewer-container">
         <button class="arrow-button left">&larr;</button>
         <model-viewer id="model-viewer"
-                      src="sheep.glb"
-                      ios-src="sheep.usdz"
+                      src="https://example.com/models/sheep.glb"
+                      ios-src="https://example.com/models/sheep.usdz"
                       alt="Sheep"
                       ar
                       auto-rotate
@@ -109,7 +109,9 @@
         const models = [
             { src: 'sheep.glb', iosSrc: 'sheep.usdz', name: 'sheep' },
             { src: 'fynn.glb', iosSrc: 'fynn.usdz', name: 'fynn' },
-            { src: 'horse.glb', iosSrc: 'horse.usdz', name: 'horse' }
+            { src: 'https://example.com/models/horse.glb', iosSrc: 'https://example.com/models/horse.usdz', name: 'horse' },
+            { src: 'https://example.com/models/lion.glb', iosSrc: 'https://example.com/models/lion.usdz', name: 'lion' },
+            { src: 'https://example.com/models/tiger.glb', iosSrc: 'https://example.com/models/tiger.usdz', name: 'Tiger' }
         ];
 
         let currentIndex = 0;
