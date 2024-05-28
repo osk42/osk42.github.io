@@ -7,7 +7,7 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
-      font-family: "Comic Sans MS", cursive;
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
       background-color: #ffcc00;
       color: #000080;
       text-align: center;
@@ -15,6 +15,9 @@
       padding: 0;
       overflow: hidden;
       position: relative;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .container {
       padding: 20px;
@@ -25,7 +28,7 @@
       border: 3px solid #000080;
       display: inline-block;
       padding: 10px;
-      margin-top: 20px;
+      margin-top: 0px;
       margin-bottom: 5px;
     }
     h2 {
@@ -33,14 +36,14 @@
       background-color: #00ffff;
       border: 3px solid #000080;
       display: inline-block;
-      padding: 10px;
-      margin: 20px 0;
+      padding: 5px;
+      margin: 5px;
     }
     .content {
       border: 3px solid #000080;
       padding: 20px;
-      margin-left: 20px;
-      margin-right: 20px;
+      margin-left: 3%;
+      margin-right: 3%;
       background-color: #ffffff;
     }
     model-viewer {
@@ -59,6 +62,18 @@
       position: absolute;
       width: 50px;
       height: 50px;
+    }
+    .background image {
+      width: 300px;
+      height: 300px;
+    }
+    .top-right-image {
+      position: absolute;
+      top: 100px;
+      right: 100px;
+      width: 200px; /* Adjust the size as needed */
+      height: auto;
+      z-index: 10; /* Ensure it is on top */
     }
   </style>
 </head>
@@ -85,6 +100,10 @@
       <p>hello ^^</p>
     </div>
   </div>
+
+  <!-- Add your image here -->
+  <img src="bild.jpg"  class="top-right-image">
+
   <script>
     const flowerImages = ['flower1.png', 'flower2.png', 'flower3.png'];
     const body = document.body;
