@@ -1,172 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kunsthalle AR</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style>
-    body {
-      font-family: "Comic Sans MS", "Comic Sans", cursive;
-      background-color: #ffcc00;
-      color: #000080;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      position: relative;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    .container {
-      padding: 20px;
-    }
-    h1 {
-      color: #ff0000;
-      background-color: #00ffff;
-      border: 3px solid #000080;
-      display: inline-block;
-      padding: 10px;
-      margin-top: 0px;
-      margin-bottom: 5px;
-    }
-    h2 {
-      color: #ff0000;
-      background-color: #00ffff;
-      border: 3px solid #000080;
-      display: inline-block;
-      padding: 5px;
-      margin: 5px;
-    }
-    .content {
-      border: 3px solid #000080;
-      padding: 20px;
-      margin-left: 3%;
-      margin-right: 3%;
-      background-color: #ffffff;
-    }
-    model-viewer {
-      width: 100%;
-      height: 80vh;
-      display: block;
-      margin: auto;
-      border: 3px solid #000080;
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 0.8em;
-      color: #000080;
-    }
-    .flower {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-    }
-    .background image {
-      width: 300px;
-      height: 300px;
-    }
-    .top-right-image {
-      position: absolute;
-      top: 100px;
-      right: 100px;
-      width: 200px; /* Adjust the size as needed */
-      height: auto;
-      z-index: 10; /* Ensure it is on top */
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR - VOI</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif; /* Apply the font to the entire body */
+        }
+        h2 {
+            margin-top: 100px; /* Adjust this value to move the headline lower */
+            text-align: center;
+        }
+        model-viewer {
+            border: 2px solid white; /* Adds a white border around the 3D viewer */
+            margin-top: 20px; /* Optional: Adds some spacing between the headline and the 3D viewer */
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>THIS IS AR</h1><br>
-    <h2>You 90s kids will someday understand</h2>
-    <div class="content">
-      <model-viewer 
-        id="model-viewer"
-        src="Fynn.glb"
-        ios-src="Fynn.usdz"
-        alt="Kunsthalle AR Show"
-        ar
-        ar-modes="webxr scene-viewer quick-look" 
-        environment-image="neutral" 
-        auto-rotate
-        camera-controls
-        animation-name="CubeAction" 
-        animation-loop>
-      </model-viewer>
-    </div>
-    <div class="footer">
-      <p>hello ^^</p>
-    </div>
-  </div>
-
-  <!-- Add your image here -->
-  <img src="bild.jpg"  class="top-right-image">
-
-  <script>
-    const flowerImages = ['flower1.png', 'flower2.png', 'flower3.png'];
-    const body = document.body;
-
-    function getRandomPosition() {
-      const x = Math.floor(Math.random() * window.innerWidth);
-      const y = Math.floor(Math.random() * window.innerHeight);
-      return { x, y };
-    }
-
-    function getRandomDuration() {
-      return Math.floor(Math.random() * 5) + 3; // Duration between 3 to 7 seconds
-    }
-
-    function createKeyframes(flower, duration) {
-      const initialPosition = getRandomPosition();
-      const finalPosition = getRandomPosition();
-
-      const keyframes = `
-        @keyframes moveFlower${flower.dataset.index} {
-          0% { left: ${initialPosition.x}px; top: ${initialPosition.y}px; }
-          100% { left: ${finalPosition.x}px; top: ${finalPosition.y}px; }
-        }
-      `;
-
-      const styleSheet = document.styleSheets[0];
-      styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-
-      flower.style.animation = `moveFlower${flower.dataset.index} ${duration}s linear infinite alternate`;
-    }
-
-    function addFlower(index) {
-      const img = document.createElement('img');
-      img.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
-      img.className = 'flower';
-      img.dataset.index = index;
-
-      body.appendChild(img);
-
-      const duration = getRandomDuration();
-      createKeyframes(img, duration);
-    }
-
-    function addMultipleFlowers(count) {
-      for (let i = 0; i < count; i++) {
-        addFlower(i);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      addMultipleFlowers(20); // Change the number to add more or fewer flowers
-      checkARCoreCompatibility();
-    });
-
-    async function checkARCoreCompatibility() {
-      const modelViewer = document.getElementById('model-viewer');
-      const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-      if (!isARCoreSupported) {
-        modelViewer.removeAttribute('ar');
-        modelViewer.removeAttribute('ar-modes');
-        alert('Your device is not compatible with AR features. You can still view the 3D model.');
-      }
-    }
-  </script>
+    <h2>sheep</h2>
+    <model-viewer src="sheep.glb"
+                  ios-src="sheep.usdz"
+                  alt="Sheep"
+                  ar
+                  auto-rotate
+                  camera-controls
+                  ar-modes="webxr scene-viewer quick-look" 
+                  environment-image="neutral">   
+    </model-viewer>
 </body>
 </html>
