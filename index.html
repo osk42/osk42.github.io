@@ -18,12 +18,12 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            font-family: 'Roboto', sans-serif; /* Apply the 'Roboto' font to the entire body */
+            font-family: 'Roboto', sans-serif;
         }
         h2 {
-            margin-top: 100px; /* Adjust this value to move the headline lower */
+            margin-top: 100px;
             text-align: center;
-            font-size: 3em; /* Increase the font size of the headline */
+            font-size: 3em;
         }
         .model-viewer-container {
             position: relative;
@@ -34,7 +34,7 @@
             justify-content: center;
         }
         model-viewer {
-            border: 2px solid rgba(255, 255, 255, 0); /* Adds a white border around the 3D viewer */
+            border: 2px solid rgba(255, 255, 255, 0);
             width: 100%;
             height: 100%;
         }
@@ -62,12 +62,12 @@
         }
         .custom-text {
             font-family: "Jacquard 12", system-ui;
-            font-size: 1em; /* Change the font size */
-            font-weight: bold; /* Make the font bold */
-            color: #ffffff; /* Change the text color */
-            position: relative; /* Use relative positioning */
-            top: 10px; /* Move the text down 50px */
-            left: 0px; /* Move the text right 20px */
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffffff;
+            position: relative;
+            top: 10px;
+            left: 0px;
         }
     </style>
 </head>
@@ -82,7 +82,7 @@
                       ar
                       auto-rotate
                       camera-controls
-                      ar-modes="webxr scene-viewer quick-look" 
+                      ar-modes="webxr scene-viewer quick-look"
                       environment-image="neutral">
         </model-viewer>
         <button class="arrow-button right">&rarr;</button>
@@ -103,7 +103,7 @@
 
         function updateModel(index) {
             const model = models[index];
-            modelViewer.src = model.src;
+            modelViewer.setAttribute('src', model.src);
             modelViewer.setAttribute('ios-src', model.iosSrc);
             modelName.textContent = model.name;
         }
