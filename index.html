@@ -72,10 +72,11 @@
     </style>
 </head>
 <body>
-    <h2 class="jacquard-12-regular">sheep</h2>
+    <h2 class="jacquard-12-regular">Voi</h2>
     <div class="model-viewer-container">
         <button class="arrow-button left">&larr;</button>
-        <model-viewer src="sheep.glb"
+        <model-viewer id="model-viewer"
+                      src="sheep.glb"
                       ios-src="sheep.usdz"
                       alt="Sheep"
                       ar
@@ -86,17 +87,39 @@
         </model-viewer>
         <button class="arrow-button right">&rarr;</button>
     </div>
-    <p class="custom-text">Voi</p>
+    <p id="model-name" class="custom-text">sheep</p>
 
     <script>
-        // Optional: Add JavaScript for button functionality
-        const modelViewer = document.querySelector('model-viewer');
+        const models = [
+            { src: 'sheep.glb', iosSrc: 'sheep.usdz', name: 'sheep' },
+            { src: 'fynn.glb', iosSrc: 'fynn.usdz', name: 'fynn' },
+            { src: 'horse.glb', iosSrc: 'horse.usdz', name: 'horse' }
+        ];
+
+        let currentIndex = 0;
+
+        const modelViewer = document.querySelector('#model-viewer');
+        const modelName = document.querySelector('#model-name');
+
+        function updateModel(index) {
+            const model = models[index];
+            modelViewer.src = model.src;
+            modelViewer.setAttribute('ios-src', model.iosSrc);
+            modelName.textContent = model.name;
+        }
+
         document.querySelector('.arrow-button.left').addEventListener('click', () => {
-            modelViewer.rotateY -= 0.1; // Rotate model left
+            currentIndex = (currentIndex === 0) ? models.length - 1 : currentIndex - 1;
+            updateModel(currentIndex);
         });
+
         document.querySelector('.arrow-button.right').addEventListener('click', () => {
-            modelViewer.rotateY += 0.1; // Rotate model right
+            currentIndex = (currentIndex === models.length - 1) ? 0 : currentIndex + 1;
+            updateModel(currentIndex);
         });
+
+        // Initialize the model viewer with the first model
+        updateModel(currentIndex);
     </script>
 </body>
 </html>
