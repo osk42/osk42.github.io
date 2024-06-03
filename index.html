@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR - VOI</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
-    <style>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&display=swap" rel="stylesheet">
+   
+   <style>
         body {
             background-color: black;
             color: white;
@@ -69,12 +75,13 @@
         }
         .background-text {
             position: absolute;
-            top: 50%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 10vw; /* Responsive font size */
+            font-family: "Major Mono Display", monospace;
+            font-size: 25vw; /* Responsive font size */
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            color: rgba(255, 255, 255, 0.672); /* Semi-transparent white */
             white-space: nowrap;
             z-index: 0; /* Behind other content */
             pointer-events: none; /* Prevent interaction */
@@ -82,8 +89,10 @@
     </style>
 </head>
 <body>
-    <div class="background-text">Project Name</div>
-    <h2>Voi</h2>
+    <div class="background-text">Voi42</div>
+    <h2>Porject Name</h2>
+
+
     <div class="model-viewer-container">
         <model-viewer id="modelViewer"
                       src="Fynn.glb"
@@ -96,6 +105,6 @@
                       environment-image="neutral">
         </model-viewer>
         <button id="arButton">View in AR</button>
-        <a href="https://www.instagram.com/yourprofile" target="_blank" class="instagram-link">
+        <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
             <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2.2c3.2 0 3.584.013 4.847.07 1.16.053 1.926.24 2.372.405.576.22.99.487 1.425.922.435.435.702.849.922 1.425.166.446.352 1.212.405 2.372.057 1.263.07 1.647.07 4.847s-.013 3.584-.07 4.847c-.053 1.16-.24 1.926-.405 2.372-.22.576-.487.99-.922 1.425-.435.435-.849.702-1.425.922-.446.166-1.212.352-2.372.405-1.263.057-1.647.07-4.847.07s-3.584-.013-4.847-.07c-1.16-.053-1.926-.24-2.372-.405-.576-.22-.99-.487-1.425-.922-.435-.435-.702-.849-.922-1.425-.166-.446-.352-1.212-.405-
