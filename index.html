@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8">
+ <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR - VOI</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Jacquard 12';
@@ -24,20 +27,25 @@
             font-family: 'Jacquard 12', sans-serif; /* Apply the font to the entire body */
         }
         h2 {
-            margin-top: 100px; /* Adjust this value to move the headline lower */
+            margin-top: 100px;
             text-align: center;
+            font-size: 3em;
         }
-        model-viewer {
-            border: 2px solid white; /* Adds a white border around the 3D viewer */
-            margin-top: 20px; /* Optional: Adds some spacing between the headline and the 3D viewer */
+         .model-viewer-container {
+            position: relative;
+            width: 80vw;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <h2>sheep</h2>
-    <model-viewer src="sheep.glb"
-                  ios-src="sheep.usdz"
-                  alt="Sheep"
+    <h2>Voi</h2>
+    <model-viewer src="Fynn.glb"
+                  ios-src="Fynn.usdz"
+                  alt="Fynn"
                   ar
                   auto-rotate
                   camera-controls
