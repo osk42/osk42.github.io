@@ -1,172 +1,143 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kunsthalle AR</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style>
-    body {
-      font-family: "Comic Sans MS", "Comic Sans", cursive;
-      background-color: #ffcc00;
-      color: #000080;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      position: relative;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    .container {
-      padding: 20px;
-    }
-    h1 {
-      color: #ff0000;
-      background-color: #00ffff;
-      border: 3px solid #000080;
-      display: inline-block;
-      padding: 10px;
-      margin-top: 0px;
-      margin-bottom: 5px;
-    }
-    h2 {
-      color: #ff0000;
-      background-color: #00ffff;
-      border: 3px solid #000080;
-      display: inline-block;
-      padding: 5px;
-      margin: 5px;
-    }
-    .content {
-      border: 3px solid #000080;
-      padding: 20px;
-      margin-left: 3%;
-      margin-right: 3%;
-      background-color: #ffffff;
-    }
-    model-viewer {
-      width: 100%;
-      height: 80vh;
-      display: block;
-      margin: auto;
-      border: 3px solid #000080;
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 0.8em;
-      color: #000080;
-    }
-    .flower {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-    }
-    .background image {
-      width: 300px;
-      height: 300px;
-    }
-    .top-right-image {
-      position: absolute;
-      top: 100px;
-      right: 100px;
-      width: 200px; /* Adjust the size as needed */
-      height: auto;
-      z-index: 10; /* Ensure it is on top */
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR - VOI</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+        }
+        h2 {
+            margin-top: 100px;
+            text-align: center;
+            font-size: 3em;
+        }
+        .model-viewer-container {
+            position: relative;
+            width: 80vw;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        model-viewer {
+            border: 2px solid rgba(255, 255, 255, 0);
+            width: 100%;
+            height: 100%;
+        }
+        .arrow-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+            color: rgb(255, 255, 255);
+            font-size: 2em;
+            padding: 0.5em;
+            cursor: pointer;
+            z-index: 1; /* Ensure buttons are above the model viewer */
+        }
+        .arrow-button.left {
+            left: -40px;
+        }
+        .arrow-button.right {
+            right: -40px;
+        }
+        .jacquard-12-regular {
+            font-family: "Jacquard 12", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .custom-text {
+            font-family: "Jacquard 12", system-ui;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffffff;
+            position: relative;
+            top: 10px;
+            left: 0px;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2em;
+                margin-top: 60px;
+            }
+            .model-viewer-container {
+                width: 90vw;
+                height: 50vh;
+            }
+            .arrow-button {
+                font-size: 1.5em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>THIS IS AR</h1><br>
-    <h2>You 90s kids will someday understand</h2>
-    <div class="content">
-      <model-viewer 
-        id="model-viewer"
-        src="Fynn.glb"
-        ios-src="Fynn.usdz"
-        alt="Kunsthalle AR Show"
-        ar
-        ar-modes="webxr scene-viewer quick-look" 
-        environment-image="neutral" 
-        auto-rotate
-        camera-controls
-        animation-name="CubeAction" 
-        animation-loop>
-      </model-viewer>
+    <h2 class="jacquard-12-regular">Voi</h2>
+    <div class="model-viewer-container">
+        <button class="arrow-button left">&larr;</button>
+        <model-viewer id="model-viewer"
+                      src="https://example.com/models/sheep.glb"
+                      ios-src="https://example.com/models/sheep.usdz"
+                      alt="Sheep"
+                      ar
+                      auto-rotate
+                      camera-controls
+                      ar-modes="webxr scene-viewer quick-look"
+                      environment-image="neutral">
+        </model-viewer>
+        <button class="arrow-button right">&rarr;</button>
     </div>
-    <div class="footer">
-      <p>hello ^^</p>
-    </div>
-  </div>
+    <p id="model-name" class="custom-text">sheep</p>
 
-  <!-- Add your image here -->
-  <img src="bild.jpg"  class="top-right-image">
+    <script>
+        const models = [
+            { src: 'sheep.glb', iosSrc: 'sheep.usdz', name: 'sheep' },
+            { src: 'fynn.glb', iosSrc: 'fynn.usdz', name: 'fynn' },
+            { src: 'https://example.com/models/horse.glb', iosSrc: 'https://example.com/models/horse.usdz', name: 'horse' },
+            { src: 'https://example.com/models/lion.glb', iosSrc: 'https://example.com/models/lion.usdz', name: 'lion' },
+            { src: 'https://example.com/models/tiger.glb', iosSrc: 'https://example.com/models/tiger.usdz', name: 'Tiger' }
+        ];
 
-  <script>
-    const flowerImages = ['flower1.png', 'flower2.png', 'flower3.png'];
-    const body = document.body;
+        let currentIndex = 0;
 
-    function getRandomPosition() {
-      const x = Math.floor(Math.random() * window.innerWidth);
-      const y = Math.floor(Math.random() * window.innerHeight);
-      return { x, y };
-    }
+        const modelViewer = document.querySelector('#model-viewer');
+        const modelName = document.querySelector('#model-name');
 
-    function getRandomDuration() {
-      return Math.floor(Math.random() * 5) + 3; // Duration between 3 to 7 seconds
-    }
-
-    function createKeyframes(flower, duration) {
-      const initialPosition = getRandomPosition();
-      const finalPosition = getRandomPosition();
-
-      const keyframes = `
-        @keyframes moveFlower${flower.dataset.index} {
-          0% { left: ${initialPosition.x}px; top: ${initialPosition.y}px; }
-          100% { left: ${finalPosition.x}px; top: ${finalPosition.y}px; }
+        function updateModel(index) {
+            const model = models[index];
+            modelViewer.setAttribute('src', model.src);
+            modelViewer.setAttribute('ios-src', model.iosSrc);
+            modelName.textContent = model.name;
         }
-      `;
 
-      const styleSheet = document.styleSheets[0];
-      styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+        document.querySelector('.arrow-button.left').addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? models.length - 1 : currentIndex - 1;
+            updateModel(currentIndex);
+        });
 
-      flower.style.animation = `moveFlower${flower.dataset.index} ${duration}s linear infinite alternate`;
-    }
+        document.querySelector('.arrow-button.right').addEventListener('click', () => {
+            currentIndex = (currentIndex === models.length - 1) ? 0 : currentIndex + 1;
+            updateModel(currentIndex);
+        });
 
-    function addFlower(index) {
-      const img = document.createElement('img');
-      img.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
-      img.className = 'flower';
-      img.dataset.index = index;
-
-      body.appendChild(img);
-
-      const duration = getRandomDuration();
-      createKeyframes(img, duration);
-    }
-
-    function addMultipleFlowers(count) {
-      for (let i = 0; i < count; i++) {
-        addFlower(i);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      addMultipleFlowers(20); // Change the number to add more or fewer flowers
-      checkARCoreCompatibility();
-    });
-
-    async function checkARCoreCompatibility() {
-      const modelViewer = document.getElementById('model-viewer');
-      const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-      if (!isARCoreSupported) {
-        modelViewer.removeAttribute('ar');
-        modelViewer.removeAttribute('ar-modes');
-        alert('Your device is not compatible with AR features. You can still view the 3D model.');
-      }
-    }
-  </script>
+        // Initialize the model viewer with the first model
+        updateModel(currentIndex);
+    </script>
 </body>
 </html>
