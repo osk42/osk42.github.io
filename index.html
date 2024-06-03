@@ -19,6 +19,8 @@
             justify-content: flex-start;
             height: 100vh;
             font-family: 'Jacquard 12', sans-serif; /* Apply the font to the entire body */
+            position: relative; /* Ensure positioning for the background text */
+            overflow: hidden; /* Hide any overflow from the large text */
         }
         h2 {
             margin-top: 50px; /* Reduce margin to compensate for larger model viewer */
@@ -33,6 +35,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            z-index: 1; /* Ensure model viewer stays on top */
         }
         model-viewer {
             width: 100%;
@@ -64,9 +67,22 @@
             width: 40px; /* Adjust size as needed */
             height: 40px; /* Adjust size as needed */
         }
+        .background-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10vw; /* Responsive font size */
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            white-space: nowrap;
+            z-index: 0; /* Behind other content */
+            pointer-events: none; /* Prevent interaction */
+        }
     </style>
 </head>
 <body>
+    <div class="background-text">Project Name</div>
     <h2>Voi</h2>
     <div class="model-viewer-container">
         <model-viewer id="modelViewer"
@@ -82,17 +98,4 @@
         <button id="arButton">View in AR</button>
         <a href="https://www.instagram.com/yourprofile" target="_blank" class="instagram-link">
             <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.2c3.2 0 3.584.013 4.847.07 1.16.053 1.926.24 2.372.405.576.22.99.487 1.425.922.435.435.702.849.922 1.425.166.446.352 1.212.405 2.372.057 1.263.07 1.647.07 4.847s-.013 3.584-.07 4.847c-.053 1.16-.24 1.926-.405 2.372-.22.576-.487.99-.922 1.425-.435.435-.849.702-1.425.922-.446.166-1.212.352-2.372.405-1.263.057-1.647.07-4.847.07s-3.584-.013-4.847-.07c-1.16-.053-1.926-.24-2.372-.405-.576-.22-.99-.487-1.425-.922-.435-.435-.702-.849-.922-1.425-.166-.446-.352-1.212-.405-2.372-.057-1.263-.07-1.647-.07-4.847s.013-3.584.07-4.847c.053-1.16.24-1.926.405-2.372.22-.576.487-.99.922-1.425.435-.435.849-.702 1.425-.922.446-.166 1.212-.352 2.372-.405C8.416 2.213 8.8 2.2 12 2.2zm0-2.2C8.735 0 8.332.014 7.052.072 5.754.132 4.85.34 4.058.68 3.228 1.036 2.536 1.538 1.927 2.147c-.609.609-1.111 1.301-1.467 2.131C.34 5.15.132 6.054.072 7.352.014 8.632 0 9.035 0 12c0 2.965.014 3.368.072 4.648.06 1.298.268 2.202.68 2.994.356.83.858 1.522 1.467 2.131.609.609 1.301 1.111 2.131 1.467.792.412 1.696.62 2.994.68 1.28.058 1.683.072 4.648.072s3.368-.014 4.648-.072c1.298-.06 2.202-.268 2.994-.68.83-.356 1.522-.858 2.131-1.467.609-.609 1.111-1.301 1.467-2.131.412-.792.62-1.696.68-2.994.058-1.28.072-1.683.072-4.648s-.014-3.368-.072-4.648c-.06-1.298-.268-2.202-.68-2.994-.356-.83-.858-1.522-1.467-2.131-.609-.609-1.301-1.111-2.131-1.467-.792-.412-1.696-.62-2.994-.68C15.368.014 14.965 0 12 0zm0 5.838a6.162 6.162 0 0 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.806-12.541a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
-            </svg>
-        </a>
-    </div>
-    <script>
-        const arButton = document.getElementById('arButton');
-        const modelViewer = document.getElementById('modelViewer');
-
-        arButton.addEventListener('click', () => {
-            modelViewer.activateAR();
-        });
-    </script>
-</body>
-</html>
+                <path d="M12 2.2c3.2 0 3.584.013 4.847.07 1.16.053 1.926.24 2.372.405.576.22.99.487 1.425.922.435.435.702.849.922 1.425.166.446.352 1.212.405 2.372.057 1.263.07 1.647.07 4.847s-.013 3.584-.07 4.847c-.053 1.16-.24 1.926-.405 2.372-.22.576-.487.99-.922 1.425-.435.435-.849.702-1.425.922-.446.166-1.212.352-2.372.405-1.263.057-1.647.07-4.847.07s-3.584-.013-4.847-.07c-1.16-.053-1.926-.24-2.372-.405-.576-.22-.99-.487-1.425-.922-.435-.435-.702-.849-.922-1.425-.166-.446-.352-1.212-.405-
