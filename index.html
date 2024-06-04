@@ -34,6 +34,25 @@
             text-align: center;
             font-size: 3em;
         }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            border: 2px solid white; /* White border */
+            background-color: rgba(255, 255, 255, 0);
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.7); /* Added drop shadow */
+        }
+
+        button:hover {
+            background-color: #ddd;
+            color: black; /* Change text color for better visibility */
+        }
+       
         .model-viewer-container {
             position: relative;
             width: 100vw; /* Full width of the viewport */
@@ -91,6 +110,7 @@
                       ar-modes="webxr scene-viewer quick-look" 
                       environment-image="neutral">
         </model-viewer>
+        <button id="arButton">View in AR</button>
       
         
         <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
