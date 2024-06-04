@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR - VOI</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
+   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
-
+   
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&display=swap" rel="stylesheet">
-
-    <style>
-
+   
+   <style>
+    
         body {
             background-color: black;
             color: white;
@@ -49,6 +49,7 @@
             width: 100%;
             height: 100%;
         }
+      
 
         .instagram-link {
             margin-top: 20px;
@@ -73,20 +74,6 @@
             z-index: 0; /* Behind other content */
             pointer-events: none; /* Prevent interaction */
         }
-        .ar-button-container {
-            margin-top: 10px; /* Adjust as needed */
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .ar-button-container button {
-            background-color: white;
-            border-radius: 4px;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -103,13 +90,13 @@
                       camera-controls
                       ar-modes="webxr scene-viewer quick-look" 
                       environment-image="neutral">
+
+             <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
+      View in AR
+  </button>
+            
         </model-viewer>
       
-        <div class="ar-button-container">
-            <button slot="ar-button">
-                View in AR
-            </button>
-        </div>
         
         <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
             <img src="instagram_png.png" alt="Instagram">
