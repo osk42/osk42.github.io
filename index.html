@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR - VOI</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-   
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
-   
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&display=swap" rel="stylesheet">
    
-   <style>
-    
+    <style>
         body {
             background-color: black;
             color: white;
@@ -25,24 +22,24 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            font-family: 'Jacquard 12', sans-serif; /* Apply the font to the entire body */
-            position: relative; /* Ensure positioning for the background text */
-            overflow: hidden; /* Hide any overflow from the large text */
+            font-family: 'Jacquard 12', sans-serif;
+            position: relative;
+            overflow: hidden;
         }
         h2 {
-            margin-top: 50px; /* Reduce margin to compensate for larger model viewer */
+            margin-top: 50px;
             text-align: center;
             font-size: 3em;
         }
         .model-viewer-container {
             position: relative;
-            width: 100vw; /* Full width of the viewport */
-            height: 70vh;  /* 70% of the viewport height */
+            width: 100vw;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 1; /* Ensure model viewer stays on top */
+            z-index: 1;
         }
         model-viewer {
             width: 100%;
@@ -54,19 +51,15 @@
             font-size: 1.2em;
             font-family: 'Roboto', sans-serif;
             cursor: pointer;
-            border: 2px solid white; /* White border */
+            border: 2px solid white;
             background-color: rgba(255, 255, 255, 0);
             color: rgb(255, 255, 255);
             border-radius: 5px;
-            box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.7); /* Added drop shadow */
+            box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.7);
         }
-
-      
-
-
         button:hover {
             background-color: #ddd;
-            color: black; /* Change text color for better visibility */
+            color: black;
         }
         .instagram-link {
             margin-top: 50px;
@@ -75,8 +68,8 @@
         }
         .instagram-link img {
             display: block;
-            width: 40px; /* Adjust size as needed */
-            height: 40px; /* Adjust size as needed */
+            width: 40px;
+            height: 40px;
         }
         .background-text {
             position: absolute;
@@ -84,12 +77,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: "Major Mono Display", monospace;
-            font-size: 25vw; /* Responsive font size */
+            font-size: 25vw;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            color: rgba(255, 255, 255, 0.1);
             white-space: nowrap;
-            z-index: 0; /* Behind other content */
-            pointer-events: none; /* Prevent interaction */
+            z-index: 0;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -105,15 +98,24 @@
                       ar
                       auto-rotate
                       camera-controls
-                      ar-modes="webxr scene-viewer quick-look" 
+                      ar-modes="webxr scene-viewer quick-look"
                       environment-image="neutral">
         </model-viewer>
-      <button id="arButton">View in AR</button>
-        
+        <button id="arButton">View in AR</button>
         <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
             <img src="instagram_png.png" alt="Instagram">
         </a>
     </div>
+
+    <script>
+        document.getElementById('arButton').addEventListener('click', () => {
+            const modelViewer = document.getElementById('modelViewer');
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert('AR is not available on this device or browser.');
+            }
+        });
+    </script>
 </body>
 </html>
-
