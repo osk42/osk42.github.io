@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&display=swap" rel="stylesheet">
    
    <style>
-    
         body {
             background-color: black;
             color: white;
@@ -117,5 +116,14 @@
             <img src="instagram_png.png" alt="Instagram">
         </a>
     </div>
+
+    <script>
+        const arButton = document.getElementById('arButton');
+        const modelViewer = document.getElementById('modelViewer');
+
+        arButton.addEventListener('click', () => {
+            modelViewer.activateAR();
+        });
+    </script>
 </body>
 </html>
