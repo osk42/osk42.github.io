@@ -14,7 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&display=swap" rel="stylesheet">
    
-   <style>
+    <style>
         body {
             background-color: black;
             color: white;
@@ -34,8 +34,13 @@
             font-size: 3em;
         }
 
-        button {
+        .button-container {
+            display: flex;
+            align-items: center;
             margin-top: 20px;
+        }
+
+        button {
             padding: 10px 20px;
             font-size: 1.2em;
             font-family: 'Roboto', sans-serif;
@@ -44,14 +49,36 @@
             background-color: rgba(255, 255, 255, 0);
             color: rgb(255, 255, 255);
             border-radius: 5px;
-            box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.7); /* Added drop shadow */
+            /*box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.7); /* Added drop shadow */
+            margin-left: 10px; /* Add some space between the buttons */
         }
 
         button:hover {
             background-color: #ddd;
             color: black; /* Change text color for better visibility */
         }
-       
+
+        #newButton {
+            background: url('instagram_png.png') no-repeat center center;
+            background-size: contain;
+            width: 40px;
+            height: 40px;
+            border: none;
+            padding: 0;
+            margin-left: 10px; /* Add some space between the buttons */
+            cursor: pointer;
+        }
+
+        .instagram-link {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .instagram-link img {
+            width: 40px; /* Adjust size as needed */
+            height: 40px; /* Adjust size as needed */
+        }
+
         .model-viewer-container {
             position: relative;
             width: 100vw; /* Full width of the viewport */
@@ -67,18 +94,7 @@
             width: 100%;
             height: 100%;
         }
-      
 
-        .instagram-link {
-            margin-top: 20px;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .instagram-link img {
-            display: block;
-            width: 40px; /* Adjust size as needed */
-            height: 40px; /* Adjust size as needed */
-        }
         .background-text {
             position: absolute;
             top: 40%;
@@ -92,14 +108,69 @@
             z-index: 0; /* Behind other content */
             pointer-events: none; /* Prevent interaction */
         }
- </style>
 
-    
+        /* Slide styles */
+        .slide-container {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+            z-index: 100; /* On top of other content */
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .slide-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            color: black;
+            position: relative; /* Ensure proper positioning for close button */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+
+        .slide-text {
+            font-family: 'Roboto', sans-serif; /* New font for slide text */
+            font-size: 1.2em;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .close-slide-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            border: 2px solid black;
+            background-color: rgba(255, 255, 255, 0);
+            color: black;
+            border-radius: 5px;
+        }
+
+        .close-slide-button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
 </head>
 <body>
     <h2>Concrete Surveillance</h2>
-        <div class="background-text">Voi42</div>
-
+    <div class="background-text">Voi42</div>
     
     <div class="model-viewer-container">
         <model-viewer id="modelViewer"
@@ -112,19 +183,52 @@
                       ar-modes="webxr scene-viewer quick-look" 
                       environment-image="neutral">
         </model-viewer>
-        <button id="arButton">View in AR</button>
-       </div> 
-        
-        <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
-            <img src="instagram_png.png" alt="Instagram Icon">
-        </a>
+        <div class="button-container">
+            <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
+                <img src="instagram_png.png" alt="Instagram Icon">
+            </a>
+            <button id="arButton">View in AR</button>
+            <button id="newButton"></button>
+        </div>
+    </div>
+
+    <div id="slideContainer" class="slide-container">
+        <div class="slide-content">
+            <span id="closeSlide" class="close-btn">&times;</span>
+            <p class="slide-text">This is the text inside the slide.This is the text inside the slide.This is the text inside the slide.This is the text inside the slide.This is the text inside the slide.This is the text inside the slide.This is the text inside the slide.This is the text inside the slide.</p>
+            <button id="closeSlideButton" class="close-slide-button">Close</button>
+        </div>
+    </div>
    
     <script>
         const arButton = document.getElementById('arButton');
         const modelViewer = document.getElementById('modelViewer');
+        const newButton = document.getElementById('newButton');
+        const slideContainer = document.getElementById('slideContainer');
+        const closeSlide = document.getElementById('closeSlide');
+        const closeSlideButton = document.getElementById('closeSlideButton');
 
         arButton.addEventListener('click', () => {
             modelViewer.activateAR();
+        });
+
+        newButton.addEventListener('click', () => {
+            slideContainer.style.display = 'flex';
+        });
+
+        closeSlide.addEventListener('click', () => {
+            slideContainer.style.display = 'none';
+        });
+
+        closeSlideButton.addEventListener('click', () => {
+            slideContainer.style.display = 'none';
+        });
+
+        // Close the slide when clicking outside of the content
+        window.addEventListener('click', (event) => {
+            if (event.target === slideContainer) {
+                slideContainer.style.display = 'none';
+            }
         });
     </script>
 </body>
