@@ -1,238 +1,213 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR - VOI</title>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-   
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
-   
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&display=swap" rel="stylesheet">
-   
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-            font-family: 'Jacquard 12', sans-serif; /* Apply the font to the entire body */
-            position: relative; /* Ensure positioning for the background text */
-            overflow: hidden; /* Hide any overflow from the large text */
-        }
-        h2 {
-            margin-top: 40px; /* Reduce margin to compensate for larger model viewer */
-            text-align: center;
-            font-size: 3em;
-        }
-
-        .button-container {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1.2em;
-            font-family: 'Roboto', sans-serif;
-            cursor: pointer;
-            border: 2px solid white; /* White border */
-            background-color: rgba(255, 255, 255, 0);
-            color: rgb(255, 255, 255);
-            border-radius: 5px;
-            /*box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.7); /* Added drop shadow */
-            margin-left: 10px; /* Add some space between the buttons */
-        }
-
-        button:hover {
-            background-color: #ddd;
-            color: black; /* Change text color for better visibility */
-        }
-
-        #newButton {
-            background: url('Text.png') no-repeat center center;
-            background-size: contain;
-            width: 38px;
-            height: 38px;
-            border: none;
-            padding: 0;
-            margin-left: 10px; /* Add some space between the buttons */
-            cursor: pointer;
-        }
-
-        .instagram-link {
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .instagram-link img {
-            width: 40px; /* Adjust size as needed */
-            height: 40px; /* Adjust size as needed */
-        }
-
-        .model-viewer-container {
-            position: relative;
-            width: 100vw; /* Full width of the viewport */
-            height: 70vh;  /* 70% of the viewport height */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 1; /* Ensure model viewer stays on top */
-            margin-top: -30px; /* Move the model-viewer slightly up */
-        }
-        model-viewer {
-            width: 100%;
-            height: 100%;
-        }
-
-        .background-text {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: "Major Mono Display", monospace;
-            font-size: 25vw; /* Responsive font size */
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-            white-space: nowrap;
-            z-index: 0; /* Behind other content */
-            pointer-events: none; /* Prevent interaction */
-        }
-
-        /* Slide styles */
-        .slide-container {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
-            z-index: 100; /* On top of other content */
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .slide-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            text-align: center;
-            color: black;
-            position: relative; /* Ensure proper positioning for close button */
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2em;
-            color: white;
-            cursor: pointer;
-        }
-
-        .slide-text {
-            font-family: 'Roboto', sans-serif; /* New font for slide text */
-            font-size: 1.2em;
-            color: black;
-            margin-bottom: 20px;
-        }
-
-        .close-slide-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            font-family: 'Roboto', sans-serif;
-            cursor: pointer;
-            border: 2px solid black;
-            background-color: rgba(255, 255, 255, 0);
-            color: black;
-            border-radius: 5px;
-        }
-
-        .close-slide-button:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Voi42 | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Concrete Surveillance</h2>
-    <div class="background-text">Voi42</div>
-    
-    <div class="model-viewer-container">
-        <model-viewer id="modelViewer"
-                      src="Supervision_spawn.glb"
-                      ios-src="supervision_spawn.usdz"
-                      alt="Fynn"
-                      ar
-                      auto-rotate
-                      camera-controls
-                      disable-zoom
-                      min-scale="1"
-                      max-scale="1"
-                      ar-modes="webxr scene-viewer quick-look" 
-                      environment-image="neutral">
-        </model-viewer>
-        <div class="button-container">
-            <a href="https://www.instagram.com/_voi42/" target="_blank" class="instagram-link">
-                <img src="instagram_png.png" alt="Instagram Icon">
-            </a>
-            <button id="arButton">View in AR</button>
-            <button id="newButton"></button>
-        </div>
+    <div class="container">
+        <!-- Logo Header -->
+        <header class="header">
+            <img src="VOI_42_Glass.png" alt="Voi42 Logo" class="logo">
+        </header>
+
+        <!-- Linktree -->
+        <nav class="linktree">
+            <a href="https://www.instagram.com/_voi42/" target="_blank" class="link">Instagram</a>
+            <a href="https://www.youtube.com/channel/UChleTrgvRcFK8_2C4NXcWag" target="_blank" class="link">YouTube</a>
+            <a href="#contact" class="link">Useless Button</a>
+        </nav>
+
+
+        <!-- Portfolio -->
+        <main class="portfolio">
+            <h1 class="portfolio-title">Projects</h1>
+            
+            <!-- Project Template -->
+            <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">1 YEAR EXIT</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/1YEAREXIT.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DHJPZgnMvgB/" class="project-link">View Project →</a>
+                </div>
+            </div>
+
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">5 YEARS LACOVA</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/5LACOVA.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">TRANCE WITH FRIENDS</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/TranceWithFriends.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">ERROR KOLLEKTIV</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/ErrorReel.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">EROTICA x NOID</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/Erotica x NOID.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">EROTICA 2</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/Erotica 2.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">EROTICA</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/Erotica 1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">GULLIGANG promovideo</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/Gulli.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+             <!-- Project Template -->
+             <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">MOVE TO GROOVE</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/MoveToGroove.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Add more projects following the same structure -->
+
+              <!-- Project Template -->
+              <div class="project">
+                <div class="project-header">
+                    <h2 class="project-name">EXIT x Marko's Bday</h2>
+                    <div class="project-indicator"></div>
+                </div>
+                <div class="project-content">
+                    <div class="video-container">
+                        <video class="project-video" controls playsinline poster="project-poster.jpg">
+                            <source src="videos/Markobash.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="project-description">3D promotion reel created in Blender with experimental lighting techniques.</p>
+                    <a href="https://www.instagram.com/p/DC_woz6AgAt/" class="project-link">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Add more projects following the same structure -->
+        </main>
     </div>
 
-    <div id="slideContainer" class="slide-container">
-        <div class="slide-content">
-            <span id="closeSlide" class="close-btn">&times;</span>
-            <p class="slide-text"><span style="font-family: 'Jacquard 12', sans-serif;font-size: 40px;">Concrete Surveillance</span> <br>is a thought-provoking sculpture crafted from rough concrete. This sculpture explores the complex relationship between security and privacy in the modern world. The cold, hard concrete represents the weight of ever-present surveillance, while the rotating circles evoke a disorienting and unsettling feeling of being watched. The CCTV cameras are a strong reminder of the constant monitoring we face, prompting viewers to question the boundaries of safety and freedom. </p>
-            <button id="closeSlideButton" class="close-slide-button">Close</button>
-        </div>
-    </div>
-    
-   
     <script>
-        const arButton = document.getElementById('arButton');
-        const modelViewer = document.getElementById('modelViewer');
-        const newButton = document.getElementById('newButton');
-        const slideContainer = document.getElementById('slideContainer');
-        const closeSlide = document.getElementById('closeSlide');
-        const closeSlideButton = document.getElementById('closeSlideButton');
-
-        arButton.addEventListener('click', () => {
-            modelViewer.activateAR();
-        });
-
-        newButton.addEventListener('click', () => {
-            slideContainer.style.display = 'flex';
-        });
-
-        closeSlide.addEventListener('click', () => {
-            slideContainer.style.display = 'none';
-        });
-
-        closeSlideButton.addEventListener('click', () => {
-            slideContainer.style.display = 'none';
-        });
-
-        // Close the slide when clicking outside of the content
-        window.addEventListener('click', (event) => {
-            if (event.target === slideContainer) {
-                slideContainer.style.display = 'none';
-            }
+        document.querySelectorAll('.project-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const project = header.parentElement;
+                project.classList.toggle('active');
+                
+                // Smooth scroll to project
+                if(project.classList.contains('active')) {
+                    project.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
